@@ -19,3 +19,9 @@ data_*/
 
 # Claude Code specific
 .claude/
+
+# Temporary tile extraction folders
+browseable_tiles/
+temp_tiles/
+extract_tiles.py
+extract_all_tiles.py

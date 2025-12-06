@@ -6,10 +6,8 @@ const MAP_HEIGHT = 20
 
 # Tile types (we'll use indices from our tileset)
 const TILE_GRASS = 0
-const TILE_WATER = 1
-const TILE_MOUNTAIN = 2
-const TILE_FOREST = 3
-const TILE_DESERT = 4
+const TILE_FOREST = 1
+const TILE_FOREST2 = 2
 
 # Noise for procedural generation
 var noise = OpenSimplexNoise.new()
@@ -34,18 +32,13 @@ func generate_map():
 
 func get_tile_from_noise(val):
 	# Convert noise value (-1 to 1) to tile type
-	if val < -0.4:
-		return TILE_WATER  # Deep water
-	elif val < -0.1:
+	if val < -0.3:
 		return TILE_GRASS  # Grassland/plains
-	elif val < 0.2:
-		return TILE_FOREST  # Forest
-	elif val < 0.5:
-		return TILE_DESERT  # Desert/hills
+	elif val < 0.3:
+		return TILE_FOREST  # Forest type 1
 	else:
-		return TILE_MOUNTAIN  # Mountains
+		return TILE_FOREST2  # Forest type 2
 
 func is_walkable(x, y):
-	var tile = get_cell(x, y)
-	# Water and mountains are not walkable
-	return tile != TILE_WATER and tile != TILE_MOUNTAIN
+	# All tiles are walkable (grass and both forest types)
+	return true
